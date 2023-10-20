@@ -5,7 +5,7 @@ namespace WpfOldschoolVideoGameStore.Managers
 {
     public static class StoreManager
     {
-        public static IUser? SignedInUser { get; set; }
+        public static IUser? SignedInUser { get; set; } = new Customer();
         public static List<IUser> Users { get; set; } = new()
         {
             new Admin() {Username = "admin", Password = "123"},

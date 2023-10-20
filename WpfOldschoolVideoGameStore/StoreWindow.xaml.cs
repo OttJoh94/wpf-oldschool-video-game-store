@@ -15,16 +15,22 @@ namespace WpfOldschoolVideoGameStore
         {
             InitializeComponent();
             LoadComboBox();
-            UpdateUi();
+            UpdateUI();
+            if (StoreManager.SignedInUser.GetType() == typeof(Admin))
+            {
+                btnAddMedia.Visibility = Visibility.Visible;
+                btnShowAdminInfo.Visibility = Visibility.Visible;
+                btnRent.IsEnabled = false;
+            }
         }
 
         private void LoadComboBox()
         {
-            cbMediaType.Items.Add("Games");
-            cbMediaType.Items.Add("Movies");
+            cbMediaType.Items.Add("Game");
+            cbMediaType.Items.Add("Movie");
         }
 
-        private void UpdateUi()
+        private void UpdateUI()
         {
             lstMedia.Items.Clear();
             cbMediaType.SelectedIndex = -1;
@@ -39,6 +45,7 @@ namespace WpfOldschoolVideoGameStore
                 lstMedia.Items.Add(item);
 
             }
+            CheckMyRentals();
         }
 
         private void cbMediaType_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,7 +105,66 @@ namespace WpfOldschoolVideoGameStore
 
         private void btnClearFilter_Click(object sender, RoutedEventArgs e)
         {
-            UpdateUi();
+            UpdateUI();
+        }
+
+        private void btnSignOut_Click(object sender, RoutedEventArgs e)
+        {
+            StoreManager.SignedInUser = null;
+            MainWindow mainWindow = new();
+            mainWindow.Show();
+            Close();
+        }
+
+        private void btnRent_Click(object sender, RoutedEventArgs e)
+        {
+            if (lstMedia.SelectedItem == null)
+            {
+                return;
+            }
+
+            Customer signedInCustomer = (Customer)StoreManager.SignedInUser!;
+
+            ListViewItem selectedItem = (ListViewItem)lstMedia.SelectedItem;
+            IMedia selectedMedia = (IMedia)selectedItem.Tag;
+
+            if (selectedMedia.IsRentedOut)
+            {
+                MessageBox.Show($"{selectedMedia.TypeOfMedia} is already rented out.", "Warning");
+                return;
+            }
+
+            selectedMedia.IsRentedOut = true;
+            signedInCustomer.RentedMedia.Add(selectedMedia);
+
+            MessageBox.Show($"{selectedMedia.Name} added to your rentals");
+
+            UpdateUI();
+        }
+
+        private void btnMyRentals_Click(object sender, RoutedEventArgs e)
+        {
+            MyRentalsWindow window = new();
+            window.Show();
+            Close();
+        }
+
+        private void CheckMyRentals()
+        {
+            if (StoreManager.SignedInUser.GetType() != typeof(Customer))
+            {
+                return;
+            }
+
+            Customer signedInCustomer = (Customer)StoreManager.SignedInUser;
+            if (signedInCustomer.RentedMedia.Count == 0)
+            {
+                btnMyRentals.IsEnabled = false;
+            }
+            else
+            {
+                btnMyRentals.IsEnabled = true;
+            }
         }
     }
 

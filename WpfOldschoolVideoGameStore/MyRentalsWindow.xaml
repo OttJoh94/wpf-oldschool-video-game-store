@@ -1,0 +1,32 @@
+﻿<Window x:Class="WpfOldschoolVideoGameStore.MyRentalsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfOldschoolVideoGameStore"
+        mc:Ignorable="d"
+        Title="MyRentalsWindow" Height="200" Width="480" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        
+        <ListView Name="lstMedia"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="80"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                    <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="40"/>
+                    <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="120"/>
+                    <GridViewColumn Header="R-Rated" DisplayMemberBinding="{Binding RRated}" Width="50"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button Name="btnReturn" Grid.Row="1" Width="70" Content="Return" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnReturn_Click"/>
+        <Button Name="btnBack" Grid.Row="1" Width="70" Content="Back" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btnBack_Click"/>
+
+    </Grid>
+</Window>

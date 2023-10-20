@@ -36,8 +36,8 @@
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
                     <GridViewColumn Header="Rating" DisplayMemberBinding="{Binding Rating}" Width="40"/>
                     <GridViewColumn Header="Genre" DisplayMemberBinding="{Binding Genre}" Width="120"/>
-                    <GridViewColumn Header="Available" DisplayMemberBinding="{Binding Available}" Width="60"/>
                     <GridViewColumn Header="R-Rated" DisplayMemberBinding="{Binding RRated}" Width="50"/>
+                    <GridViewColumn Header="Available" DisplayMemberBinding="{Binding Available}" Width="60"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -47,9 +47,11 @@
         <Button Name="btnFilter" Grid.Row="3" Grid.Column="2" Height="30" Width="80" Content="Filter" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnFilter_Click" Margin="20 0"/>
         <Button Name="btnClearFilter" Grid.Row="3" Grid.Column="2" Height="30" Width="80" Content="Clear" FontSize="16" HorizontalAlignment="RIght" VerticalAlignment="Top" Margin="20 0" Click="btnClearFilter_Click"/>
 
-        <Button Name="btnRent" Grid.Row="4" Grid.Column="2" Height="30" Width="120" Content="Rent" FontSize="16" VerticalAlignment="Bottom"/>
-        <Button Name="btnAddMedia" Grid.Row="5" Grid.Column="2" Height="30" Width="120" Content="Add Media" FontSize="16" VerticalAlignment="Bottom"/>
-        <Button Name="btnShowAdminInfo" Grid.Row="6" Grid.Column="2" Height="30" Width="150" Content="Show Admin Info" FontSize="16" VerticalAlignment="Bottom"/>
+        <Button Name="btnRent" Grid.Row="4" Grid.Column="2" Height="30" Width="120" Content="Rent" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnRent_Click"/>
+        <Button Name="btnMyRentals" Grid.Row="5" Grid.Column="2" Height="30" Width="120" Content="My rentals" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnMyRentals_Click" />
+        <Button Name="btnShowAdminInfo" Grid.Row="5" Grid.Column="2" Height="30" Width="150" Content="Show Admin Info" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="Collapsed" Margin="5 0 0 0" Background="MediumSlateBlue"/>
+        <Button Name="btnAddMedia" Grid.Row="6" Grid.Column="2" Height="30" Width="110" Content="Add Media" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="Collapsed" Margin="5 0 0 0" Background="MediumSlateBlue"/>
+        <Button Name="btnSignOut" Grid.Row="6" Grid.Column="2" Height="30" Width="110" Content="Sign out" FontSize="16" VerticalAlignment="Bottom" HorizontalAlignment="Right" Click="btnSignOut_Click" />
 
     </Grid>
 </Window>
